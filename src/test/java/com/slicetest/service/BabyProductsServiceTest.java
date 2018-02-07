@@ -11,6 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.persistence.EntityNotFoundException;
+
+import java.util.Collections;
+
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.times;
@@ -42,6 +46,19 @@ public class BabyProductsServiceTest {
         service.getProducts("gerber");
 
         verify(repo, times(1)).findByCompanyName("gerber");
+
+    }
+
+    @Test(expected = EntityNotFoundException.class)
+    public void getProducts_throwError_whenCompanyNotFound() throws Exception {
+        when(repo.findByCompanyName("coors")).thenReturn(Collections.emptyList());
+
+        service.getProducts("coors");
+        service.getProducts("coors");
+        service.getProducts("coors");
+        service.getProducts("coors");
+
+        verify(repo, times(1)).findByCompanyName("coors");
 
     }
 

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by tarunkansal on 12/12/17.
@@ -31,5 +32,11 @@ public class BabyProductsRepoTest {
         List<BabyProductsEntity> result = this.repo.findByCompanyName("gerber");
         assertEquals(entity.getProductName(), result.get(0).getProductName());
         assertEquals(entity.getType(), result.get(0).getType());
+    }
+
+    @Test
+    public void test_findByCompanyName_returnEmptyList_whenCompanyNotFound() throws Exception {
+        List<BabyProductsEntity> result = this.repo.findByCompanyName("coors");
+        assertEquals(0, result.size());
     }
 }

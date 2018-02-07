@@ -10,6 +10,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 import static java.util.Arrays.asList;
@@ -40,6 +41,13 @@ public class BabyProductsControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("[0].productName").value("baby formula"))
                 .andExpect(jsonPath("[0].type").value("food"));
+    }
+
+    @Test
+    public void test_getProducts_return404_whenCompanyNotFound() throws Exception {
+        when(productsService.getProducts("coors")).thenThrow(new EntityNotFoundException("company not found"));
+        this.mockMvc.perform(get("/babyproducts/{companyName}", "coors"))
+                .andExpect(status().isNotFound());
     }
 
 
