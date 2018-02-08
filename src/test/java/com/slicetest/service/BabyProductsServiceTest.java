@@ -1,5 +1,6 @@
 package com.slicetest.service;
 
+import com.slicetest.exception.CompanyNotFoundException;
 import com.slicetest.repo.BabyProductsDoc;
 import com.slicetest.repo.BabyProductsRepo;
 import org.junit.Test;
@@ -10,6 +11,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.Collections;
 
 import static java.util.Arrays.asList;
 import static org.mockito.Mockito.*;
@@ -42,7 +45,7 @@ public class BabyProductsServiceTest {
 
     }
 
-    /*@Test(expected = EntityNotFoundException.class)
+    @Test(expected = CompanyNotFoundException.class)
     public void getProducts_throwError_whenCompanyNotFound() throws Exception {
         when(repo.findByCompanyName("coors")).thenReturn(Collections.emptyList());
 
@@ -52,7 +55,6 @@ public class BabyProductsServiceTest {
         service.getProducts("coors");
 
         verify(repo, times(1)).findByCompanyName("coors");
-
-    }*/
+    }
 
 }

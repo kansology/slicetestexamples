@@ -26,10 +26,4 @@ public class BabyProductsController {
     public List<Products> getProducts(@PathVariable String companyName) {
         return productsService.getProducts(companyName);
     }
-
-    /*@ExceptionHandler({EntityNotFoundException.class})
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public void handleException() {
-        System.out.println("EntityNotFoundException");
-    }*/
 }

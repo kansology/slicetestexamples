@@ -1,5 +1,6 @@
 package com.slicetest.controller;
 
+import com.slicetest.exception.CompanyNotFoundException;
 import com.slicetest.model.Products;
 import com.slicetest.service.BabyProductsService;
 import org.junit.Test;
@@ -42,12 +43,12 @@ public class BabyProductsControllerTest {
                 .andExpect(jsonPath("[0].type").value("food"));
     }
 
-    /*@Test
+    @Test
     public void test_getProducts_return404_whenCompanyNotFound() throws Exception {
-        when(productsService.getProducts("coors")).thenThrow(new EntityNotFoundException("company not found"));
+        when(productsService.getProducts("coors")).thenThrow(new CompanyNotFoundException("company not found"));
         this.mockMvc.perform(get("/babyproducts/{companyName}", "coors"))
                 .andExpect(status().isNotFound());
-    }*/
+    }
 
 
 }

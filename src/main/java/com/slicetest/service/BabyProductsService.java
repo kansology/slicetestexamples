@@ -1,5 +1,6 @@
 package com.slicetest.service;
 
+import com.slicetest.exception.CompanyNotFoundException;
 import com.slicetest.model.Products;
 import com.slicetest.repo.BabyProductsDoc;
 import com.slicetest.repo.BabyProductsRepo;
@@ -24,7 +25,7 @@ public class BabyProductsService {
         List<BabyProductsDoc> entities = repo.findByCompanyName(companyName);
 
         if (entities == null || entities.isEmpty()) {
-            //throw new EntityNotFoundException(companyName + "not available.");
+            throw new CompanyNotFoundException(companyName + "not available.");
         }
 
         return entities.stream()
