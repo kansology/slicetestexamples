@@ -1,12 +1,14 @@
 package com.slicetest.repo;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 import java.util.List;
 
 /**
  * Created by tarunkansal on 12/12/17.
  */
-public interface BabyProductsRepo extends CrudRepository<BabyProductsEntity, Long> {
-    List<BabyProductsEntity> findByCompanyName(String companyName);
+@EnableMongoRepositories
+public interface BabyProductsRepo extends MongoRepository<BabyProductsDoc, String> {
+    List<BabyProductsDoc> findByCompanyName(String companyName);
 }
