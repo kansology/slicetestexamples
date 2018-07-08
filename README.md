@@ -1,11 +1,9 @@
 # slicetestexamples
-[![Build Status](https://travis-ci.org/kansology/slicetestexamples.svg?branch=master)](https://travis-ci.org/kansology/slicetestexamples)
 
-examples for the slice test in Spring Boot
+examples for the slice test in Spring Boot with groovy
 
-Project contains two branches for now. <br />
-**master** -> Slice testing with mysql/oracle databases. <br />
-**mongodbtest**-> Slice testing with MongoDb.
+Till now i am unable to get the spock test for caching. it is unable to get the Spring Mock Bean.<br/>
+These tests are ignored for now.
 
-
-Upcoming -> RabbitMQ tests...
+Real change is:
+`@RunWith(SpringRunner.class)` will be changed to `@ContextConfiguration(classes = [<Application class name>])`

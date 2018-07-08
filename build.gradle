@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
@@ -31,6 +32,14 @@ dependencies {
 	compileOnly('org.projectlombok:lombok')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile('com.h2database:h2')
+	testCompile('org.spockframework:spock-core:1.1-groovy-2.4')
+	testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
+}
+
+test {
+	testLogging {
+		events "PASSED", "SKIPPED", "FAILED"
+	}
 }
 
 defaultTasks 'clean', 'build'

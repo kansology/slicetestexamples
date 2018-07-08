@@ -11,9 +11,6 @@ import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * Created by tarunkansal on 12/10/17.
- */
 @Service
 public class BabyProductsService {
 
