@@ -25,7 +25,7 @@ public class BabyProductsRepoTest {
     private MongoTemplate mongoTemplate;
 
     @Test
-    public void test_findByCompanyName_returnList() throws Exception {
+    public void test_findByCompanyName_returnList() {
         BabyProductsDoc objectToSave = new BabyProductsDoc().builder()
                 .companyName("gerber")
                 .productName("baby formula")
@@ -33,7 +33,7 @@ public class BabyProductsRepoTest {
                 .build();
         mongoTemplate.save(objectToSave, "babyProducts");
 
-        List<BabyProductsDoc> result = repo.findByCompanyName("gerber");
+        List<BabyProductsDoc> result = repo.findCompanyByRegexp("ger");
         assertEquals(objectToSave.getProductName(), result.get(0).getProductName());
         assertEquals(objectToSave.getType(), result.get(0).getType());
     }
