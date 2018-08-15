@@ -32,8 +32,8 @@ public class BabyProductsServiceTest {
     BabyProductsRepo repo;
 
     @Test
-    public void getProducts_returnCachedValues() throws Exception {
-        when(repo.findByCompanyName("gerber")).thenReturn(asList(new BabyProductsDoc().builder()
+    public void getProducts_returnCachedValues() {
+        when(repo.findByCompanyName("gerber")).thenReturn(asList(BabyProductsDoc.builder()
                 .companyName("gerber").productName("baby formula").type("food").build()));
 
         service.getProducts("gerber");
