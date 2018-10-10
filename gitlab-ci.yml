@@ -1,0 +1,11 @@
+image: java:8
+
+stages:
+  - build
+
+build:
+  stage: build
+  script: chmod +x gradlew
+  artifacts:
+    paths:
+      - build/libs/slicetestexamples*.jar
