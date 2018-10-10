@@ -35,6 +35,13 @@ public class BabyProductsRepoTest {
     }
 
     @Test
+    public void test_findCompanyDetailsByCompanyName_returnList() throws Exception {
+        List<BabyProductsEntity> result = this.repo.findByCompanyNameWithType("tum tum");
+        assertEquals("baby formula", result.get(0).getProductName());
+        assertEquals("no type", result.get(0).getType());
+    }
+
+    @Test
     public void test_findByCompanyName_returnEmptyList_whenCompanyNotFound() throws Exception {
         List<BabyProductsEntity> result = this.repo.findByCompanyName("coors");
         assertEquals(0, result.size());

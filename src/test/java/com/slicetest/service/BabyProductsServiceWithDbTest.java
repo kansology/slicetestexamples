@@ -6,8 +6,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.persistence.EntityNotFoundException;
@@ -21,19 +24,17 @@ import static org.mockito.Mockito.*;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureTestDatabase
-public class BabyProductsServiceTest {
+@ActiveProfiles("spy-bean-test")
+public class BabyProductsServiceWithDbTest {
 
     @Autowired
     BabyProductsService service;
 
-    @MockBean
+    @Autowired
     BabyProductsRepo repo;
 
     @Test
     public void getProducts_returnCachedValues() throws Exception {
-        when(repo.findByCompanyName("gerber")).thenReturn(asList(new BabyProductsEntity().builder()
-                .companyName("gerber").productName("baby formula").type("food").build()));
 
         service.getProducts("gerber");
         service.getProducts("gerber");
@@ -60,12 +61,8 @@ public class BabyProductsServiceTest {
             service.getProducts("coors");
         } catch (EntityNotFoundException e) {
         }
-        try {
-            service.getProducts("coors");
-        } catch (EntityNotFoundException e) {
-        }
 
-        verify(repo, times(4)).findByCompanyName("coors");
+        verify(repo, times(3)).findByCompanyName("coors");
     }
 
 }
