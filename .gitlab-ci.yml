@@ -1,4 +1,6 @@
 image: java:8
+tags:
+  - CM
 
 stages:
   - build
