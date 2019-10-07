@@ -4,6 +4,7 @@ stages:
   - build
 
 build:
+  image: java:8
   tags:
   - gitlab-aws-runner
   stage: build
