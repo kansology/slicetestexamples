@@ -7,7 +7,9 @@ build:
   tags:
   - gitlab-aws-runner
   stage: build
-  script: chmod +x gradlew
+  script: 
+  - chmod +x gradlew
+  - ./gradlew clean build test
   artifacts:
     paths:
       - build/libs/slicetestexamples*.jar
